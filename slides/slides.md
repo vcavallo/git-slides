@@ -191,6 +191,196 @@ class: center, middle
 ![graph](graph.png)
 
 ???
-you know how you've seen this thing a million times for git? well that's how it works.
+- you know how you've seen this thing a million times for git? well that's how it works.
+- each of those is a commit sha and their 'parent' is the one to the left
 
 ---
+
+# Maybe I knew that stuff.  
+# Isn't there more to this?
+
+# What _ARE_ all these things?
+
+...Well, they're just, like, **files**, man.
+
+(what else could they be?)
+
+???
+- go into the filesystem: tree .git. notice all the .git/objects.
+- let's see if we can notice anything useful about this mess...
+- git log
+- notice that the commit hash is the folder/file pair
+- file .git/objects/1a/fjk324kl23j423.... == the commit / blob / tree
+- when we're doing `cat-file` that nice little bit of plumbing is printing that ^ for us
+- also show that the tree is in here.
+- also show that the blobs are in here.
+- in here: trees, blobs, commits. our three objects.
+- SKIP:: git cat-file -p $(git rev-list master -1) --- dissect this
+- SKIP:: git cat-file -p our last commit... notice that the commit hash is a folder/file pair
+
+---
+
+# It's all just files
+
+## `.git/objects/*`
+
+- home to all our object types:
+    - commits
+    - blobs
+    - trees
+
+???
+review
+
+---
+
+class: center
+
+# Wait, doesn't git do this other thing...?
+
+--
+
+![squirrel](squirrel.jpg)
+
+???
+- here's a hint...
+
+--
+
+## squirrelling!
+
+---
+
+class: center
+
+# Wait, doesn't git do this other thing...?
+
+
+![squirrel](squirrel.jpg)
+
+## ~~squirrelling!~~
+
+## _BRANCHING_
+
+---
+
+class: center
+
+![branch](branch.png)
+
+???
+- where are the branches in this objects folder....? tree .git/{objects,refs}
+- what's this heads directory? i see 'master' in here, that sounds familiar...
+- checkout a new branch
+- ls .git/refs/heads
+- cat .git/refs/heads/hello-im-a-branch
+- does this look familiar...? it's the last commit.
+- so we see a 'branch' is really just a teeny text file with a commit as its contents
+- ls -lh .git/refs/heads/master -- get filesize
+- advance.
+
+--
+
+## This is why branches are so cheap
+
+---
+
+class: center
+
+# Branches, still
+
+![graph](graph.png)
+
+???
+- hey what about the master branch? cat .git/refs/heads/master
+- same thing.... ah - our branches haven't diverged at all.
+- advance, show updated picture
+
+---
+
+class: center
+
+# Branches, still
+
+![graph with branches](graph-with-branches.png)
+
+???
+- same thing.... ah - our branches haven't diverged at all.
+- make sure you're on new branch
+- generate a new file.
+
+---
+
+class: center
+
+# Branches, still
+
+![graph with branches with divergence](graph-with-branches-and-divergence.png)
+
+???
+- cat the new branch ref again - it's the newest commit.
+
+---
+
+class: center
+
+# Branches, still
+
+![graph with branches and HEAD](graph-with-branches-and-HEAD.png)
+
+???
+- there's one final piece. what's HEAD? how does that work?
+- well it's all just a filesystem, let's look for it....
+- ls -lh .git ---> what's this HEAD thing.... maybe we cat it?
+- hey, it's got some record of a ref in it - which we know are essentially
+  containers for a commit now.
+- peep this ref
+- checkout master....
+- advance for picture
+
+---
+
+class: center
+
+# Branches, still
+
+![graph with branches and moved HEAD](graph-with-branches-and-moved-HEAD.png)
+
+???
+- cat .git/HEAD again. no surprise here...
+
+---
+
+# Tags
+
+- point to a particular commit / tree
+- good historical record
+- easier to use than the hash for the tree/commit
+- good for versioning for this reason
+
+???
+- I said I wouldn't talk about this
+- point to a particular commit - which we remember is a snapshot, right?
+- version: permament pointer to a given point in time, includes messages
+
+---
+
+# Extra Credit - how the blob is formed
+
+- compressed with zlib (https://en.wikipedia.org/wiki/Zlib)
+- ...that's about it.
+
+???
+- git log, get a commit hash
+- ls .git/objects/xx/xxxxx <-- copy that!
+- $python
+- import zlib # import the compression library
+- file = open("paste.....", "rb") # open that file
+- data = file.read() # read it into a variable
+- print data # binary nonsense
+- zlib.decompress(data) # decompress it with zlib
+- notice the difference: [TYPE] [original size] [a null byte] [contents]
+- vs: contents only (do git cat-file again side-by-side)
+
+---
+

@@ -69,13 +69,16 @@ class: center, middle
 - git cat-file -t the parent hash: hey, it's a commit. that's already one of our things.
 - peek at the git log: what's before the last commit? note the message.
 - git cat-file -p the parent hash: it's that previous commit. this is the linkage in the history.
+
 - go into the filesystem: tree .git. notice all the .git/objects. let's see if we can notice anything useful about this mess...
 - git cat-file -p our last commit... notice that the commit hash is a folder/file pair
 - file .git/objects/1a/fjk324kl23j423....
 - when we're doing `cat-file` that nice little bit of plumbing is printing that ^ for us
+
 - also show that the tree is in here.
-- also show that the bobs are in here.
+- also show that the blobs are in here.
 - in here: trees, blobs, commits. our three objects.
+
 - what's the last thing we've not covered yet.....? BRANCHES! of course.
 - where are the branches in this objects folder....? tree .git/{objects,refs}
 - what's this heads directory? i see 'master' in here, that sounds familiar...
@@ -84,11 +87,13 @@ class: center, middle
 - cat .git/refs/heads/hello-im-a-branch
 - does this look familiar...? it's the last commit.
 - so we see a 'branch' is really just a teeny text file with a commit as its contents
+
 - hey what about the master branch? cat .git/refs/heads/master
 - same thing.... ah - our branches haven't diverged at all.
 - make sure you're on new branch
 - generate a new file.
 - cat the new branch ref again - it's the newest commit.
+
 - there's one final piece. what's HEAD? how does that work?
 - well it's all just a filesystem, let's look for it....
 - ls -lh .git --- what's this HEAD thing.... maybe we cat it?
