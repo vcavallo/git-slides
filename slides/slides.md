@@ -340,6 +340,7 @@ class: center
 - ls -lh .git ---> what's this HEAD thing.... maybe we cat it?
 - hey, it's got some record of a ref in it - which we know are essentially
   containers for a commit now.
+- mention DETACHAED HEAD
 - peep this ref
 - checkout master....
 - advance for picture
