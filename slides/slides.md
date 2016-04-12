@@ -362,16 +362,27 @@ class: center
 ## `git reflog`
 
 ```bash
-(master) *  $ git reflog master
-8f020ad master@{0}: commit: Add all but conclusion slide
-ffc7a47 master@{1}: commit: Add slides up to blob
-0c949fb master@{2}: commit: Start adding slides
-456fb33 master@{3}: commit: Finalize demo notes
-dc2a5ac master@{4}: commit: Add nearly all the demo steps
-f2b2617 master@{5}: commit: Start to fill out skeleton of notes
-3ec962d master@{6}: commit (initial): Add notes file
+(master) $ git reflog master
+ca7917d master@{0}: reset: moving to ca7917d
+ffc7a47 master@{1}: reset: moving to ffc7a47
+ca7917d master@{2}: commit: Add extra credit slides
+8f020ad master@{3}: commit: Add all but conclusion slide
+ffc7a47 master@{4}: commit: Add slides up to blob
+0c949fb master@{5}: commit: Start adding slides
+456fb33 master@{6}: commit: Finalize demo notes
+dc2a5ac master@{7}: commit: Add nearly all the demo steps
+f2b2617 master@{8}: commit: Start to fill out skeleton of notes
+3ec962d master@{9}: commit (initial): Add notes file
 ```
 
+- time machine
+- local-only
+- pruned after a few months
+
+???
+- retrace your steps
+- If you `rm -rf` your project and re-clone, you'll lose this. might be useful on large projects
+- look at this on a big project, it's really interesting
 
 ---
 
