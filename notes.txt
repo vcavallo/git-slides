@@ -1,3 +1,34 @@
 ## the blob
 
 a buncha bytes. could be any type of file whatsoever
+
+-----------------
+
+
+```
+=> "SELECT `spree_orders`.* FROM `spree_orders` INNER JOIN `spree_shipments` ON `spree_shipments`.`order_id` = `spree_orders`.`id` INNER JOIN `spree_addresses` ON `spree_addresses`.`id` = `spree_shipments`.`address_id` WHERE (`spree_orders`.`created_at` BETWEEN '2016-03-01 05:00:00' AND '2016-04-01 03:59:59') AND `spree_orders`.`shipment_state` = 'shipped' AND (state_id = 3561)"
+```
+
+sum of march orders base: 10606.0 ? 13944.17
+
+sum of march orders in spree without jesse that avalara didn't have: 9614.0
+sum of march orders in spree wihout jesse but adding the two avalara had: 10706.0
+
+
+2.1.2 :057 > ava - spree
+ => ["R020632041.60", "R238554134", "R326168888"]
+# orders avalara has and spree doesn't ^
+ #<Spree::Order id: 2788, number: "R238554134", item_total: #<BigDecimal:dc389c8,'0.398E3',9(18)>, total: #<BigDecimal:dc388b0,'0.43332E3',18(18)>, state: "complete", adjustment_total: #<BigDecimal:dc386f8,'0.3532E2',18(18)>, user_id: 433, completed_at: "2016-03-03 01:00:05", bill_address_id: 1753, ship_address_id: 1754, payment_total: #<BigDecimal:dc38068,'0.43332E3',18(18)>, shipping_method_id: nil, shipment_state: "shipped", payment_state: "paid", email: "saunders.jessie@gmail.com", special_instructions: nil, created_at: "2016-02-25 03:19:39", updated_at: "2016-03-03 23:50:23", currency: "USD", last_ip_address: "67.243.148.203", created_by_id: 433, shipment_total: #<BigDecimal:dc2f3a0,'0.0',9(18)>, additional_tax_total: #<BigDecimal:dc2f288,'0.3532E2',18(18)>, promo_total: #<BigDecimal:dc2f170,'0.0',9(18)>, channel: "spree", included_tax_total: #<BigDecimal:dc2efe0,'0.0',9(18)>, item_count: 1, approver_id: nil, approved_at: nil, confirmation_delivered: true, considered_risky: false, guest_token: "OaP2NfBg939HsoVxzk_BsQ", canceled_at: nil, canceler_id: nil, store_id: 1, state_lock_version: 4, user_agent: "Mozilla/5.0 (iPad; CPU OS 9_2_1 like Mac OS X) App...", session_id: "0733dbf38d62ea74a78676ea9509b7ed", riskified_status: "approved">,
+ #<Spree::Order id: 3329, number: "R326168888", item_total: #<BigDecimal:dc2dcd0,'0.694E3',9(18)>, total: #<BigDecimal:dc2db68,'0.7556E3',18(18)>, state: "complete", adjustment_total: #<BigDecimal:dc2d9d8,'0.616E2',18(18)>, user_id: 433, completed_at: "2016-03-24 15:23:05", bill_address_id: 1861, ship_address_id: 1862, payment_total: #<BigDecimal:dc2d3e8,'0.7556E3',18(18)>, shipping_method_id: nil, shipment_state: "ready", payment_state: "paid", email: "saunders.jessie@gmail.com", special_instructions: nil, created_at: "2016-03-23 17:22:43", updated_at: "2016-03-24 15:23:05", currency: "USD", last_ip_address: "66.65.188.238", created_by_id: 433, shipment_total: #<BigDecimal:dc2c6f0,'0.0',9(18)>, additional_tax_total: #<BigDecimal:dc2c600,'0.616E2',18(18)>, promo_total: #<BigDecimal:dc2c470,'0.0',9(18)>, channel: "spree", included_tax_total: #<BigDecimal:dc2c178,'0.0',9(18)>, item_count: 3, approver_id: nil, approved_at: nil, confirmation_delivered: true, considered_risky: false, guest_token: "r7_iLNYf2p5CytU8C7DMuQ", canceled_at: nil, canceler_id: nil, store_id: 1, state_lock_version: 2, user_agent: "Mozilla/5.0 (iPhone; CPU iPhone OS 9_3 like Mac OS...", session_id: "297cd812dd3c0621992dcd77ad913f9f", riskified_status: "pending">]>
+ total of above: 1092.0
+
+2.1.2 :058 > spree - ava
+ => ["R887668049"]
+# orders spree has and avalara doesn't ^
+ => #<ActiveRecord::Relation [#<Spree::Order id: 3370, number: "R887668049", item_total: #<BigDecimal:dac07d0,'0.992E3',9(18)>, total: #<BigDecimal:dac0708,'0.108005E4',18(18)>, state: "complete", adjustment_total: #<BigDecimal:dac0578,'0.8805E2',18(18)>, user_id: 433, completed_at: "2016-04-01 11:49:27", bill_address_id: 1877, ship_address_id: 1878, payment_total: #<BigDecimal:dab3f30,'0.108005E4',18(18)>, shipping_method_id: nil, shipment_state: "shipped", payment_state: "paid", email: "saunders.jessie@gmail.com", special_instructions: nil, created_at: "2016-03-26 00:22:28", updated_at: "2016-04-01 23:00:27", currency: "USD", last_ip_address: "66.65.188.238", created_by_id: 433, shipment_total: #<BigDecimal:dab30d0,'0.0',9(18)>, additional_tax_total: #<BigDecimal:dab2fb8,'0.8805E2',18(18)>, promo_total: #<BigDecimal:dab2ef0,'0.0',9(18)>, channel: "spree", included_tax_total: #<BigDecimal:dab2d60,'0.0',9(18)>, item_count: 4, approver_id: nil, approved_at: nil, confirmation_delivered: true, considered_risky: false, guest_token: "r7_iLNYf2p5CytU8C7DMuQ", canceled_at: nil, canceler_id: nil, store_id: 1, state_lock_version: 6, user_agent: "Mozilla/5.0 (iPad; CPU OS 9_2_1 like Mac OS X) App...", session_id: "12de1d6f36da7f0abd97357d39f35019", riskified_status: "approved">]>
+ total of above: 992.0
+
+
+all of the above are jesse saunders..
+
+
