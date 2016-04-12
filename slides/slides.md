@@ -285,6 +285,12 @@ class: center
 
 ---
 
+# The `branch`
+
+- just a plain file with a pointer to a commit!
+
+---
+
 class: center
 
 # Branches, still
@@ -351,7 +357,25 @@ class: center
 
 ---
 
-# Tags
+# One last topic
+
+## `git reflog`
+
+```bash
+(master) *  $ git reflog master
+8f020ad master@{0}: commit: Add all but conclusion slide
+ffc7a47 master@{1}: commit: Add slides up to blob
+0c949fb master@{2}: commit: Start adding slides
+456fb33 master@{3}: commit: Finalize demo notes
+dc2a5ac master@{4}: commit: Add nearly all the demo steps
+f2b2617 master@{5}: commit: Start to fill out skeleton of notes
+3ec962d master@{6}: commit (initial): Add notes file
+```
+
+
+---
+
+# Extra Credit - Tags
 
 - point to a particular commit / tree
 - good historical record
@@ -365,7 +389,7 @@ class: center
 
 ---
 
-# Extra Credit - how the blob is formed
+# Extra Credit - How the blob is formed
 
 - compressed with zlib (https://en.wikipedia.org/wiki/Zlib)
 - ...that's about it.
@@ -381,6 +405,20 @@ class: center
 - zlib.decompress(data) # decompress it with zlib
 - notice the difference: [TYPE] [original size] [a null byte] [contents]
 - vs: contents only (do git cat-file again side-by-side)
+
+---
+
+class: middle
+
+# Summary
+
+- `commits`, `blobs`, `trees`: the building blocks.
+- all super-simple files, organized non-myteriously in `.git` hidden folder
+- compressed and hashed, but git's plumbing helps make irrelevant
+- `branch`: even simpler. just a pointer to a commit hash
+- `HEAD`: more of the same. simple file with a ref inside
+
+???
 
 ---
 
