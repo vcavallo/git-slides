@@ -70,3 +70,10 @@ author, etc.)
 - make sure you're on new branch
 - generate a new file.
 - cat the new branch ref again - it's the newest commit.
+- there's one final piece. what's HEAD? how does that work?
+- well it's all just a filesystem, let's look for it....
+- ls -lh .git --- what's this HEAD thing.... maybe we cat it?
+- hey, it's got some record of a ref in it - which we know are essentially
+  containers for a commit now.
+- checkout master
+- cat .git/HEAD again. no surprise here...
