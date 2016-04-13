@@ -166,6 +166,8 @@ class: center, middle
 
 ???
 - just think of this as a file. blob == file
+- we quickly discussed trees and the blobs in them.
+- think about the commit contents agian, wasn't there't something else?
 
 ---
 
